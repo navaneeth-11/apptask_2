@@ -1,21 +1,74 @@
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:url_launcher/url_launcher.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+
+
 import 'secondscreen.dart';
-class mainscreen extends StatelessWidget {
+class Mainscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading:IconButton(icon: Icon(Icons.menu),onPressed: (){
-          //
-        },),
+        
         title: Text("Main Screen",style:TextStyle(fontStyle: FontStyle.italic,fontWeight:FontWeight.bold),),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.search),onPressed: (){
+          IconButton(icon: Icon(Icons.account_circle),onPressed: (){
             //
           },),
 
         ],
       ),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            ListTile(
+              title: Text("LOGIN"),
+              leading:Icon(Icons.login),
+            ),
+            Divider(thickness: 2,color: Colors.blue,),
+            ListTile(
+               title: Text("LOGOUT"),
+               leading:Icon(Icons.logout),
+      ),
+            Divider(thickness: 2,color: Colors.blue,),
+            ListTile(
+              title: Text("HELP"),
+              leading:Icon(Icons.help),
+            ),
+            Divider(thickness: 2,color: Colors.blue,),
+            ListTile(
+              title: Text("CONTACT"),
+              leading:Icon(Icons.contacts),
+              onTap: ()  async {
+                Fluttertoast.showToast(
+                        msg: "REDIRECTING...",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.blue,
+                        textColor: Colors.black,
+                        fontSize: 16.0
+                    );
+                 const url = 'mailto:xyzBank@gmail.com';
+                  if (await canLaunch(url) != null) {
+                    await launch(url);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+              },
+            ),
+            Divider(thickness: 2,color: Colors.blue,),
+            
+          ],
+        ),
+      ),
+   
+
+
+
+      
       body: Center(
 
         child: ListView(
@@ -59,21 +112,50 @@ class mainscreen extends StatelessWidget {
 
                 ),
 
+                 TextField(
+                  decoration: InputDecoration(
+                    hintText: "ENTER YOUR EMAIL ID ",
+                    labelText: "ENTER YOUR EMAIL ID FOR EDUCATION LOAN",
+                    labelStyle: TextStyle(
+                      fontSize: 15,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    hintStyle: TextStyle(
+                      fontSize: 10,
+                      color: Colors.black,
+
+                    ),
+
+                  ),
+                ),
+
 
                 ElevatedButton(
-                  child: Text('PRESS TO GET EDUCATION LOAN'),
-                  onPressed: (){
+                  child: Text('SUBMIT'),
+                  onPressed: () {
+                    Fluttertoast.showToast(
+                        msg: "REDIRECTING...",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.blue,
+                        textColor: Colors.black,
+                        fontSize: 16.0
+                    );
+                    
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context)=>secondscreen() ),
+                        MaterialPageRoute(builder: (context)=>Secondscreen() ),
                     );
 
                   },
-
-
-
-
-
                 ),
+               
+
+
+
+
+                
 
                 Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8wTf1sf_-3RwdcZ5IbFAFrbOJPTXuy1XQ2A&usqp=CAU",
                     width: 350,
@@ -151,3 +233,4 @@ class mainscreen extends StatelessWidget {
     );
   }
 }
+

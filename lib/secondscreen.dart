@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-class secondscreen extends StatelessWidget {
-  const secondscreen({Key? key}) : super(key: key);
+class Secondscreen extends StatelessWidget {
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -12,16 +12,51 @@ class secondscreen extends StatelessWidget {
     title: Text("Second Screen",style:TextStyle(fontStyle: FontStyle.italic,fontWeight:FontWeight.bold),),
 
         ),
-      body: Center(
-        child:
+     
+       body: Center(
+         
+         child: ListView(
+           
+           children: <Widget>[
+             Column(
+               mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+               crossAxisAlignment: CrossAxisAlignment.center,
+               children: [
+                 Image.asset("assets/img2.jpg"),
 
 
-        Text("Thank you T Venkata Navaneeth for submitting", style: TextStyle(fontStyle: FontStyle.italic,fontWeight:FontWeight.bold),),
+                 Text("Thanks for submitting",
+                 textAlign: TextAlign.center,
+                 style: TextStyle(
+                   fontStyle: FontStyle.italic,
+                   fontSize: 25,
+                   fontWeight: FontWeight.w600,
 
+                  
 
-      ),
+                 ),
+                 ),
+                 IconButton( icon: const Icon(Icons.arrow_back,
+                size: 40
+                ,color: Colors.blue, ),
+                 onPressed: (){
+                   Navigator.pop(context);
 
-    );
+                 },
+                 ),
+               ],
+             )
+
+            ],
+ 
+         ),
+       ), 
+        
+        
+
+      );
+
+    
 
 
 
